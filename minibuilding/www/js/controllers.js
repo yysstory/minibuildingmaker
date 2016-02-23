@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
     if(!angular.isDefined($scope.loginData.username) || !angular.isDefined($scope.loginData.password) || $scope.loginData.username.trim() == "" ||  $scope.loginData.password.trim() == "" ){
       showAlert("로그인 실패","비번 아이디 입력해라");
       return;
-    }else{
+    }else{/*
         $http.get('')
           .then(function(response){
             if(response.data=="login_done"){
@@ -54,7 +54,11 @@ angular.module('starter.controllers', [])
             }else if(response.data=='error'){
               showAlert("로그인 실패","비번 아이디 체크했는데 틀림");
             }
-          })
+          }*/
+      Auth.setUser({
+        username : $scope.loginData.username
+      })
+      $state.go('app.playlists');
     }
   };
 
