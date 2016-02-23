@@ -3,11 +3,11 @@
  */
 var mysql      = require('mysql');
 var pool = mysql.createPool({
-    connectionLimit : 1000,
-    host     : 'leafbudz.asuscomm.com',
-    user     : 'yysstory',
-    password : 'alwjr425',
-    database    : 'minibuildingmaker'
+    connectionLimit  : 1000,
+    host             : 'leafbudz.asuscomm.com',
+    user             : 'yysstory',
+    password         : 'alwjr425',
+    database         : 'minibuildingmaker'
 });
 
 var getConnection = function(callback){
