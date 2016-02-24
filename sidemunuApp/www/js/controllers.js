@@ -1,5 +1,27 @@
 angular.module('starter.controllers', [])
 
+.controller('LottoCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
+
+})
+.controller('LoginCtrl', function($scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
+
+})
+.controller('JoinCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
+
+})
+.controller('CheckCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
+
+})
+.controller('BoardCtrl', function($scope, $ionicModal, $timeout,$state, $ionicPopup, $http) {
+
+})
+.controller('IdeaCtrl', function($scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
+
+})
+.controller('LoginCtrl', function($scope, $stateParams) {
+  })
+
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
@@ -28,7 +50,7 @@ angular.module('starter.controllers', [])
   $scope.login = function() {
     $scope.modal.show();
   };
-z
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);

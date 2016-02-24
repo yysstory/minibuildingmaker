@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers','starter,service'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,42 +32,75 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+    .state('app.lotto', {
+      url: '/lotto',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/lotto.html',
+          controller: 'LottoCtrl'
+        }
+      }
+    })
+
+    .state('app.login', {
+      url: '/login',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/login.html',
+          controller: 'LoginCtrl'
+        }
+      }
+    })
+
+
+  .state('app.join', {
+    url: '/join',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/join.html',
+        controller: 'LoginCtrl'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.check', {
+      url: '/check',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/check.html',
+          controller: 'CheckCtrl'
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.board', {
+      url: '/board',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/board.html',
+          controller: 'BoardCtrl'
         }
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.idea', {
+    url: '/idea',
     views: {
       'menuContent': {
         templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        controller: 'IdeaCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/login');
 });
+/*
+.state('app.single', {
+  url: '/playlists/:playlistId',
+  views: {
+    'menuContent': {
+      templateUrl: 'templates/playlist.html',
+      controller: 'PlaylistCtrl'
+    }
+  }
+});*/
