@@ -5,19 +5,52 @@
         뽑기
       </div>
       <div class="item item-text-wrap">
-
-      <button class="button lotto active">1</button>      <button class="button lotto">2</button>      <button class="button lotto">3</button>      <button class="button lotto">4</button>
-        <button class="button lotto">5</button>      <button class="button lotto">6</button>      <button class="button lotto">7</button>      <button class="button lotto">8</button>
-        <button class="button lotto">9</button>      <button class="button lotto">10</button>      <button class="button lotto">11</button>      <button class="button lotto">12</button>
-        <button class="button lotto">13</button>      <button class="button lotto">14</button>      <button class="button lotto">15</button>      <button class="button lotto">16</button>
-        <button class="button lotto">17</button>      <button class="button lotto">18</button>      <button class="button lotto active">19</button>      <button class="button lotto">20</button>
-        <button class="button lotto">21</button>      <button class="button lotto">22</button>      <button class="button lotto">23</button>      <button class="button lotto">24</button>
-        <button class="button lotto">25</button>      <button class="button lotto active">26</button>      <button class="button lotto">27</button>      <button class="button lotto">28</button>
-        <button class="button lotto">29</button>      <button class="button lotto">30</button>      <button class="button lotto">31</button>      <button class="button lotto">32</button>
-        <button class="button lotto">33</button>      <button class="button lotto">34</button>      <button class="button lotto">35</button>      <button class="button lotto">36</button>
-        <button class="button lotto">37</button>      <button class="button lotto">38</button>      <button class="button lotto">39</button>      <button class="button lotto">40</button>
-        <button class="button lotto">41</button>      <button class="button lotto">42</button>      <button class="button lotto">43</button>      <button class="button lotto">44</button>
-        <button class="button lotto">45</button>      <button class="button lotto">46</button>
+        <button ng-class="{active:lotto1}" class="button lotto">1</button>
+        <button ng-class="{active:lotto2}" class="button lotto">2</button>
+        <button ng-class="{active:lotto3}" class="button lotto">3</button>
+        <button ng-class="{active:lotto4}" class="button lotto">4</button>
+        <button ng-class="{active:lotto5}" class="button lotto">5</button>
+        <button ng-class="{active:lotto6}" class="button lotto">6</button>
+        <button ng-class="{active:lotto7}" class="button lotto">7</button>
+        <button ng-class="{active:lotto8}" class="button lotto">8</button>
+        <button ng-class="{active:lotto9}" class="button lotto">9</button>
+        <button ng-class="{active:lotto10}" class="button lotto">10</button>
+        <button ng-class="{active:lotto11}" class="button lotto">11</button>
+        <button ng-class="{active:lotto12}" class="button lotto">12</button>
+        <button ng-class="{active:lotto13}" class="button lotto">13</button>
+        <button ng-class="{active:lotto14}" class="button lotto">14</button>
+        <button ng-class="{active:lotto15}" class="button lotto">15</button>
+        <button ng-class="{active:lotto16}" class="button lotto">16</button>
+        <button ng-class="{active:lotto17}" class="button lotto">17</button>
+        <button ng-class="{active:lotto18}" class="button lotto">18</button>
+        <button ng-class="{active:lotto19}" class="button lotto ">19</button>
+        <button ng-class="{active:lotto20}" class="button lotto">20</button>
+        <button ng-class="{active:lotto21}" class="button lotto">21</button>
+        <button ng-class="{active:lotto22}" class="button lotto">22</button>
+        <button ng-class="{active:lotto23}" class="button lotto">23</button>
+        <button ng-class="{active:lotto24}" class="button lotto">24</button>
+        <button ng-class="{active:lotto25}" class="button lotto">25</button>
+        <button ng-class="{active:lotto26}" class="button lotto ">26</button>
+        <button ng-class="{active:lotto27}" class="button lotto">27</button>
+        <button ng-class="{active:lotto28}" class="button lotto">28</button>
+        <button ng-class="{active:lotto29}" class="button lotto">29</button>
+        <button ng-class="{active:lotto30}" class="button lotto">30</button>
+        <button ng-class="{active:lotto31}" class="button lotto">31</button>
+        <button ng-class="{active:lotto32}" class="button lotto">32</button>
+        <button ng-class="{active:lotto33}" class="button lotto">33</button>
+        <button ng-class="{active:lotto34}" class="button lotto">34</button>
+        <button ng-class="{active:lotto35}" class="button lotto">35</button>
+        <button ng-class="{active:lotto36}" class="button lotto">36</button>
+        <button ng-class="{active:lotto37}" class="button lotto">37</button>
+        <button ng-class="{active:lotto38}" class="button lotto">38</button>
+        <button ng-class="{active:lotto39}" class="button lotto">39</button>
+        <button ng-class="{active:lotto40}" class="button lotto">40</button>
+        <button ng-class="{active:lotto41}" class="button lotto">41</button>
+        <button ng-class="{active:lotto42}" class="button lotto">42</button>
+        <button ng-class="{active:lotto43}" class="button lotto">43</button>
+        <button ng-class="{active:lotto44}" class="button lotto">44</button>
+        <button ng-class="{active:lotto45}" class="button lotto">45</button>
+        <button ng-class="{active:lotto46}" class="button lotto">46</button>
       </div>
 
       <label class="item item-input item-floating-label">
@@ -27,7 +60,7 @@
 
     </div>
     <div class="list list-inset">
-    <button class="button button-block button-dark ">번호 추첨!</button>
+    <button ng-disabled="lottoBtn" ng-click="lottoRun()" class="button button-block button-dark ">번호 추첨!</button>
     </div>
   </ion-content>
 </ion-view>

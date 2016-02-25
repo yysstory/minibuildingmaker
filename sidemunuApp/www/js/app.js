@@ -58,7 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter,service'])
     views: {
       'menuContent': {
         templateUrl: 'templates/join.html',
-        controller: 'LoginCtrl'
+        controller: 'JoinCtrl'
       }
     }
   })

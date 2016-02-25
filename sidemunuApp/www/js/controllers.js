@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('LottoCtrl', function($scope,$interval, $ionicModal, $timeout, $state, $ionicPopup, $http) {
+.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, $timeout, $state, $ionicPopup, $http) {
 
   function lottoNumbers() {
     var myLotto = [];
@@ -22,7 +22,7 @@ angular.module('starter.controllers', [])
     return a - b;
   }
 
-  function lottoOn(){
+/*  function lottoOn(){
     $scope.lotto1=true;$scope.lotto2=true;$scope.lotto3=true;$scope.lotto4=true;
     $scope.lotto5=true;$scope.lotto6=true;$scope.lotto7=true;$scope.lotto8=true;
     $scope.lotto9=true;$scope.lotto10=true;$scope.lotto11=true;$scope.lotto12=true;
@@ -35,7 +35,7 @@ angular.module('starter.controllers', [])
     $scope.lotto37=true;$scope.lotto38=true;$scope.lotto39=true;$scope.lotto40=true;
     $scope.lotto41=true;$scope.lotto42=true;$scope.lotto43=true;$scope.lotto44=true;
     $scope.lotto45=true;$scope.lotto46=true;
-  }
+  }*/
 
   function lottoOff(){
     $scope.lotto1=false;$scope.lotto2=false;$scope.lotto3=false;$scope.lotto4=false;
@@ -73,18 +73,47 @@ angular.module('starter.controllers', [])
       }else if(i==0){
         $interval.cancel(interval);
         $scope.lottoBtn = false;
+        $scope.showConfirm(lottoNumberArr);
       }else{
         bool=false;
         i--;
       }
     },50);
   }
+  $scope.showConfirm = function(inputNumbers) {
+    var confirmPopup = $ionicPopup.confirm({
+      title: inputNumbers,
+      template:
+        '<b>내 보관함에 저장할까요? </b><br>' +
+        '저장된 번호로 추첨일에 결과를 알려드립니다.',
+      buttons: [{
+        text: '취소',
+        type: 'button-default'
+      }, {
+        text: '저장',
+        type: 'button-positive'
+      }]
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        console.log('취소');
+      } else {
+        console.log(inputNumbers+'저장');
+      }
+    });
+  };
+
+
+
 })
 .controller('LoginCtrl', function($scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
 
 })
 .controller('JoinCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
-
+  $scope.join = function(){
+    console.log($scope.name);
+    $state.go("app.lotto");
+  }
 })
 .controller('CheckCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
 
@@ -139,17 +168,3 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
 })
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
