@@ -1,21 +1,38 @@
-angular.module('starter,service',['ngCookies'])
-  .factory('Auth', function($cookieStore){
-      var _user = $cookieStore.get('starter.user');
-      var setUser = function(user){
-        _user = user;
-        $cookieStore.put('starter.user',_user);
+/*angular.module("starter,service",[])*/
+app.service('Auth', ['$http',function($scope,$http){
+      this.setUser = function(email,password){
+        var userData;
+        $http.post(
+          'http://localhost:3000/login',
+           {email:email,password:password}
+        )
+        .success(function(data){
+          console.log(data);
+          userData = data;
+        })
+        .error(function(data){
+          console.log(data);
+        })
       }
-    return{
-      setUser : setUser,
-      isLoggedIn : function(){
-        return _user ? true : false;
+
+  }])
+
+
+/*
+  .factory('localstorage', ['$window', function($window) {
+    return {
+      set: function(key, value) {
+        $window.localStorage[key] = value;
       },
-      getUser : function(){
-        return _user;
+      get: function(key, defaultValue) {
+        return $window.localStorage[key] || defaultValue;
       },
-      logout : function(){
-        $cookieStore.remove('starter.user');
-        _user = null;
+      setObject: function(key, value) {
+        $window.localStorage[key] = JSON.stringify(value);
+      },
+      getObject: function(key) {
+        return JSON.parse($window.localStorage[key] || '{}');
       }
     }
-  })
+  }]);
+*/

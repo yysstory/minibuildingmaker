@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+/*angular.module('starter.controllers', [])*/
 
-.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, $timeout, $state, $ionicPopup, $http) {
+app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, $timeout, $state, $ionicPopup, $http) {
 
   function lottoNumbers() {
     var myLotto = [];
@@ -109,11 +109,19 @@ angular.module('starter.controllers', [])
 .controller('LoginCtrl', function($scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
 
 })
-.controller('JoinCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
-  $scope.join = function(){
-    console.log($scope.name);
-    $state.go("app.lotto");
-  }
+.controller('JoinCtrl', function($scope,$ionicModal, $timeout, $state, $ionicPopup, $http) {
+  //Auth.setUser('yysstory@gmail.com','alwjr425');
+  $http.post(
+    'http://localhost:3000/login',
+    {email:'yysstory@gmail.com',password:'alwjr425'}
+    )
+    .success(function(data){
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    })
+
 })
 .controller('CheckCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
 
