@@ -1,20 +1,27 @@
 /*angular.module("starter,service",[])*/
-app.service('Auth', ['$http',function($scope,$http){
-      this.setUser = function(email,password){
-        var userData;
+app.service('Auth', ['$http',function($http){
+      this.userCreate = function(email,password) {
+
+      }
+      this.userRead = function(email,password){
         $http.post(
           'http://localhost:3000/login',
            {email:email,password:password}
         )
         .success(function(data){
-          console.log(data);
-          userData = data;
+          return data;
         })
         .error(function(data){
           console.log(data);
         })
       }
 
+      this.update = function(email,password) {
+
+      }
+      this.delete = function(email,password) {
+
+      }
   }])
 
 

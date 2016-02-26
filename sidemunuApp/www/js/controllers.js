@@ -107,20 +107,9 @@ app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, 
 
 })
 .controller('LoginCtrl', function($scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
-
 })
-.controller('JoinCtrl', function($scope,$ionicModal, $timeout, $state, $ionicPopup, $http) {
-  //Auth.setUser('yysstory@gmail.com','alwjr425');
-  $http.post(
-    'http://localhost:3000/login',
-    {email:'yysstory@gmail.com',password:'alwjr425'}
-    )
-    .success(function(data){
-      console.log(data);
-    })
-    .error(function(data){
-      console.log(data);
-    })
+.controller('JoinCtrl', function(Auth,$scope,$ionicModal, $timeout, $state, $ionicPopup) {
+  console.log(Auth.userRead('yysstory@gmail.com','alwjr425'));
 
 })
 .controller('CheckCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
