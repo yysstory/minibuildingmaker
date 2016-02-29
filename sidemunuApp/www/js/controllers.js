@@ -1,7 +1,8 @@
 /*angular.module('starter.controllers', [])*/
 
 app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, $timeout, $state, $ionicPopup, $http) {
-
+    console.log('로또컨트롤');
+    console.log($scope.userInfo);
   function lottoNumbers() {
     var myLotto = [];
     var aryLotto = [];
@@ -103,30 +104,54 @@ app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, 
     });
   };
 
+})
+
+.controller('MyInfoCtrl', function($rootScope,$scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
+   console.log('MyInfoCtrl');
+   console.log($scope.userInfo);
+})
 
 
+.controller('LoginCtrl', function($rootScope,$ionicHistory,Auth,$window,$scope, $ionicModal, $timeout,  $state,$location, $ionicPopup, $http) {
+  $scope.doLogin = function(){
+    var email = $scope.loginInfo.email;
+    var password = $scope.loginInfo.password;
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
+    Auth.login(email,password).then(function(loginDbData){
+      if(loginDbData.length===0){
+        $state.go('app.join');
+      }else{
+        $window.localStorage['userInfo'] = JSON.stringify(loginDbData[0]);
+        $rootScope.userInfo = JSON.parse(window.localStorage['userInfo']);
+        console.log($scope.userInfo);
+        $state.go('app.lotto');
+      }
+    })
+  }
 })
-.controller('LoginCtrl', function($scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
-})
-.controller('JoinCtrl', function(Auth,$scope,$ionicModal, $timeout, $state, $ionicPopup) {
-  console.log(Auth.userRead('yysstory@gmail.com','alwjr425'));
+.controller('JoinCtrl', function(Auth,$window,$scope,$ionicModal, $timeout, $state, $ionicPopup) {
+  $scope.doJoin = function($window) {
+    $window.localStorage.clear();
+  }
+  console.log($scope.userInfo);
 
 })
 .controller('CheckCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
+  console.log('CheckCtrl');
 
 })
 .controller('BoardCtrl', function($scope, $ionicModal, $timeout,$state, $ionicPopup, $http) {
+  console.log('BoardCtrl');
 
 })
 .controller('IdeaCtrl', function($scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
-
+  console.log('ideadCtrl');
 })
-.controller('LoginCtrl', function($scope, $stateParams) {
-  })
 
-
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
+.controller('AppCtrl', function($ionicHistory,Auth,$window,$scope, $ionicModal, $timeout,  $state,$location, $ionicPopup, $http) {
+  $scope.loginInfo = {};
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -135,8 +160,7 @@ app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, 
   //});
 
   // Form data for the login modal
-  $scope.loginData = {};
-
+/*
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -152,10 +176,10 @@ app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, 
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
-  };
+  };*/
 
   // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
+/*  $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
 
     // Simulate a login delay. Remove this and replace with your login
@@ -163,5 +187,12 @@ app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, 
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
-  };
+  };*/
+
+
+  $scope.doLogout = function($window) {
+    $window.localStorage.clear();
+  }
+
+
 })

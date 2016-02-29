@@ -18,22 +18,25 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/app/lotto">
+        <ion-item menu-close href="#/app/lotto" >
           꼬마빌딩사기
         </ion-item>
-        <ion-item menu-close href="#/app/login">
+        <ion-item menu-close href="#/app/login" ng-show="!userInfo">
           로그인
         </ion-item>
-        <ion-item menu-close href="#/app/join">
+        <ion-item menu-close href="#/app/join" ng-show="!userInfo">
           회원가입
         </ion-item>
-        <ion-item menu-close href="#/app/check">
+        <ion-item menu-close href="#/app/myInfo" ng-show="userInfo">
+          내정보
+        </ion-item>
+        <ion-item menu-close href="#/app/check" ng-show="userInfo">
           당첨조회
         </ion-item>
-        <ion-item menu-close href="#/app/board">
+        <ion-item menu-close href="#/app/board" ng-show="userInfo">
           자랑하기
         </ion-item>
-        <ion-item menu-close href="#/app/idea">
+        <ion-item menu-close href="#/app/idea" ng-show="userInfo">
           아이디어제안
         </ion-item>
       </ion-list>

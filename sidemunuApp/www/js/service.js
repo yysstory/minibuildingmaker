@@ -1,29 +1,60 @@
 /*angular.module("starter,service",[])*/
-app.service('Auth', ['$http',function($http){
-      this.userCreate = function(email,password) {
+app.service('User', ['$http','$q','$window',function($http, $q,$window){
+      this.userCreate = function(name,email,password) {
 
       }
-      this.userRead = function(email,password){
-        $http.post(
-          'http://localhost:3000/login',
-           {email:email,password:password}
-        )
-        .success(function(data){
-          return data;
-        })
-        .error(function(data){
-          console.log(data);
-        })
+      this.userRead = function(){
+        return JSON.parse(window.localStorage['userInfo'] || {});
       }
 
-      this.update = function(email,password) {
+      this.userUpdate = function(email,password) {
 
       }
-      this.delete = function(email,password) {
+      this.userDelete = function(email,password) {
 
       }
   }])
 
+app.service('Auth', ['$http','$q',function($http, $q){
+
+  this.login = function(email,password) {
+    //deferred 객체를 생성한다.
+    var deferred = $q.defer();
+    $http.post(
+      'http://localhost:3000/login',
+      {email:email,password:password}
+      )
+      .success(function(data){
+        //요청이 성공하면 약속을 지키고 별도 데이터를 전달한다.
+        deferred.resolve(data);
+      })
+      .error(function(msg){
+        //요청이 실패하면 약속을 취소하고 메시지를 전달한다.
+        deferred.reject(msg);
+      })
+    //해당 deferred 객체의 약속을 반환한다.
+    return deferred.promise;
+  }
+  this.logout = function(email,password) {
+
+  }
+
+  this.join = function(email,password) {
+
+  }
+  this.withdrawal= function(email,password) {
+
+  }
+
+/*  this.authorised= function(object) {
+    if(object.length>1){
+      return true;
+    }else {
+      return false;
+    }
+  }*/
+
+}])
 
 /*
   .factory('localstorage', ['$window', function($window) {

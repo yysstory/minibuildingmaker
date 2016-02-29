@@ -42,6 +42,16 @@ var app = angular.module('starter', ['ionic'])
       }
     })
 
+    .state('app.myInfo', {
+      url: '/myInfo',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/myInfo.html',
+          controller: 'MyInfoCtrl'
+        }
+      }
+    })
+
     .state('app.login', {
       url: '/login',
       views: {
