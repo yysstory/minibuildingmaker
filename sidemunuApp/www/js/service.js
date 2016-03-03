@@ -1,4 +1,7 @@
 /*angular.module("starter,service",[])*/
+
+var rootUrl='http://192.168.0.18:3000';
+
 app.service('User', ['$http','$q','$window',function($http, $q,$window){
       this.userCreate = function(name,email,password) {
 
@@ -15,13 +18,13 @@ app.service('User', ['$http','$q','$window',function($http, $q,$window){
       }
   }])
 
-app.service('Auth', ['$http','$q',function($http, $q){
+app.service('Auth', ['$http','$q','$rootScope','$window','$state',function($http, $q,$rootScope,$window,$state){
 
   this.login = function(email,password) {
     //deferred 객체를 생성한다.
     var deferred = $q.defer();
     $http.post(
-      'http://localhost:3000/login',
+      rootUrl+'/auth/login',
       {email:email,password:password}
       )
       .success(function(data){
@@ -35,15 +38,40 @@ app.service('Auth', ['$http','$q',function($http, $q){
     //해당 deferred 객체의 약속을 반환한다.
     return deferred.promise;
   }
-  this.logout = function(email,password) {
-
+  this.logout = function() {
+    $rootScope.userInfo=null;
+    $window.localStorage['userInfo'] = null;
+    $state.go('app.lotto', {}, {reload: true});
   }
 
-  this.join = function(email,password) {
-
+  this.join = function(name,email,password) {
+    var deferred = $q.defer();
+    $http.post(
+        rootUrl+'/auth/join',
+      {name:name,email:email,password:password}
+      )
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(msg){
+        deferred.reject(msg);
+      })
+    return deferred.promise;
   }
+
   this.withdrawal= function(email,password) {
-
+    var deferred = $q.defer();
+    $http.post(
+      rootUrl+'/auth/withdrawal',
+      {email:email,password:password}
+      )
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(msg){
+        deferred.reject(msg);
+      })
+    return deferred.promise;
   }
 
 /*  this.authorised= function(object) {
@@ -54,6 +82,76 @@ app.service('Auth', ['$http','$q',function($http, $q){
     }
   }*/
 
+}])
+app.service('LottoResult', ['$http','$q','$window',function($http, $q,$window) {
+
+
+
+
+}])
+
+app.service('Board', ['$http','$q','$window',function($http, $q,$window) {
+
+  this.create = function(memNo,title,content){
+    var deferred = $q.defer();
+    $http.post(
+        rootUrl+'/board/create',
+      {memNo:memNo,title:title,content:content}
+      )
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(msg){
+        deferred.reject(msg);
+      })
+    return deferred.promise;
+  }
+
+ /* this.read = function(memNo,title,content){
+    var deferred = $q.defer();
+    $http.post(
+        rootUrl+'/board/create',
+      {memNo:memNo,title:title,content:content}
+      )
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(msg){
+        deferred.reject(msg);
+      })
+    return deferred.promise;
+  }
+
+  this.update = function(memNo,title,content){
+    var deferred = $q.defer();
+    $http.post(
+        rootUrl+'/board/create',
+      {memNo:memNo,title:title,content:content}
+      )
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(msg){
+        deferred.reject(msg);
+      })
+    return deferred.promise;
+  }
+
+  this.delete = function(memNo,title,content){
+    var deferred = $q.defer();
+    $http.post(
+        rootUrl+'/board/create',
+      {memNo:memNo,title:title,content:content}
+      )
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(msg){
+        deferred.reject(msg);
+      })
+    return deferred.promise;
+  }
+  */
 }])
 
 /*

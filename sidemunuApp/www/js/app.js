@@ -96,13 +96,13 @@ var app = angular.module('starter', ['ionic'])
     url: '/idea',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
+        templateUrl: 'templates/idea.html',
         controller: 'IdeaCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/app/lotto');
 });
 /*
 .state('app.single', {

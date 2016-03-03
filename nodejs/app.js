@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var auth = require('./routes/auth');
+var board = require('./routes/board');
+
 var db = require('./db/basic');
 var cors = require('cors')
 
@@ -29,6 +32,9 @@ app.use(cors());
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/auth', auth);
+app.use('/board', board);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

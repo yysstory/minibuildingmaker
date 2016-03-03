@@ -1,6 +1,6 @@
 <ion-view view-title="회원가입">
   <ion-content>
-    <form name="joinForm">
+    <form ng-submit="doJoin()">
     <div class="list list-inset">
       <label class="item item-input">
         <span class="input-label">NAME</span>
@@ -26,7 +26,7 @@
         <ion-checkbox ng-model="filter.yellow">동의합니다.</ion-checkbox>
       </div>-->
       <div class="list list-inset">
-        <button class="button button-block button-dark" ng-click="join()">회원가입</button>
+        <button class="button button-block button-dark" type="submit">회원가입</button>
       </div>
     </form>
   </ion-content>

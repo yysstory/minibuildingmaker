@@ -1,8 +1,11 @@
 /*angular.module('starter.controllers', [])*/
 
-app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, $timeout, $state, $ionicPopup, $http) {
+app.controller('LottoCtrl', function($ionicHistory,$scope,$ionicPopup,$interval, $ionicModal, $timeout, $state, $ionicPopup, $http) {
     console.log('로또컨트롤');
     console.log($scope.userInfo);
+  $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
   function lottoNumbers() {
     var myLotto = [];
     var aryLotto = [];
@@ -106,9 +109,32 @@ app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, 
 
 })
 
-.controller('MyInfoCtrl', function($rootScope,$scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
+.controller('MyInfoCtrl', function($ionicHistory,$window,Auth,$rootScope,$scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
    console.log('MyInfoCtrl');
    console.log($scope.userInfo);
+   $scope.doLogout= function(){
+     $ionicHistory.nextViewOptions({
+       disableBack: true
+     });
+     console.log('로그아웃');
+     Auth.logout();
+   }
+
+   $scope.doWithdrawal= function(){
+     var email = $scope.loginInfo.email;
+     var password = $scope.loginInfo.password;
+     Auth.withdrawal(email,password).then(function(withdrawalRetrunData){
+       if(withdrawalRetrunData.affectedRows===1){
+         var alertPopup = $ionicPopup.alert({
+           title: '이용해주셔서 감사합니다.',
+           template: '좀 더 강력한기능을 개발해놓을게요!'
+         });
+         alertPopup.then(function(res) {
+           Auth.logout();
+         });
+       }
+     })
+   }
 })
 
 
@@ -131,12 +157,38 @@ app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, 
     })
   }
 })
-.controller('JoinCtrl', function(Auth,$window,$scope,$ionicModal, $timeout, $state, $ionicPopup) {
-  $scope.doJoin = function($window) {
-    $window.localStorage.clear();
-  }
-  console.log($scope.userInfo);
+.controller('JoinCtrl', function($ionicHistory,Auth,$window,$scope,$ionicModal, $timeout, $state, $ionicPopup) {
+  $scope.doJoin = function() {
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
+    var name = $scope.loginInfo.name;
+    var email = $scope.loginInfo.email;
+    var password = $scope.loginInfo.password;
 
+    Auth.join(name,email,password).then(function(data){
+      if(data.affectedRows===1){
+        var alertPopup = $ionicPopup.alert({
+          title: '회원가입이 완료되었습니다.',
+          template: '꼬마빌딩을 사 보아요!'
+        });
+        alertPopup.then(function(res) {
+          $state.go('app.lotto');
+        });
+      }else{
+        var alertPopup = $ionicPopup.alert({
+          title: '가입중 오류가 발생했습니다.',
+          template: '잠시 후 다시 시도해주세요!'
+        });
+        alertPopup.then(function(res) {
+          $state.go('app.join');
+        });
+      }
+    })
+  }
+
+
+/*  $window.localStorage.clear();*/
 })
 .controller('CheckCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
   console.log('CheckCtrl');
@@ -144,7 +196,6 @@ app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, 
 })
 .controller('BoardCtrl', function($scope, $ionicModal, $timeout,$state, $ionicPopup, $http) {
   console.log('BoardCtrl');
-
 })
 .controller('IdeaCtrl', function($scope, $ionicModal, $timeout,  $state, $ionicPopup, $http) {
   console.log('ideadCtrl');
@@ -188,11 +239,5 @@ app.controller('LottoCtrl', function($scope,$ionicPopup,$interval, $ionicModal, 
       $scope.closeLogin();
     }, 1000);
   };*/
-
-
-  $scope.doLogout = function($window) {
-    $window.localStorage.clear();
-  }
-
 
 })

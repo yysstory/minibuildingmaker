@@ -1,5 +1,14 @@
 <ion-view view-title="idea">
   <ion-content>
-    <h1>idea</h1>
+    <form ng-submit="doWithdrawal()">
+      <div class="list list-inset">
+        <span>제안해주신 내용은 검토 후 반영됩니다!</span>
+        <label class="item item-input">
+          <textarea placeholder="" style="height: 250px;"></textarea>
+        </label>
+        <button class="button button-block button-gray" type="submit">제안하기</button>
+      </div>
+  </form>
+
   </ion-content>
 </ion-view>

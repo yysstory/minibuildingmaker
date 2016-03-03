@@ -4,5 +4,23 @@
     <h1>{{userInfo.PASSWORD}}</h1>
     <h1>{{userInfo.EMAIL}}</h1>
     <h1>{{userInfo.AGE}}</h1>
+
+    <button class="button button-block button-dark" ng-click="doLogout()" >로그아웃</button>
+
+    <form ng-submit="doWithdrawal()">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">이메일</span>
+          <input type="email" ng-model="loginInfo.email" ng-required="true">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">비밀번호</span>
+          <input type="password" ng-model="loginInfo.password" ng-required="true">
+        </label>
+        <!--        <label class="item">
+                </label>-->
+        <button class="button button-block button-gray" type="submit">회원탈퇴</button>
+      </div>
+    </form>
   </ion-content>
 </ion-view>
