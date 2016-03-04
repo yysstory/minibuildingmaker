@@ -85,7 +85,66 @@ app.service('Auth', ['$http','$q','$rootScope','$window','$state',function($http
 }])
 app.service('LottoResult', ['$http','$q','$window',function($http, $q,$window) {
 
+  this.create = function(memNo,num1,num2,num3,num4,num5,num6,round){
+    var deferred = $q.defer();
+    $http.post(
+        rootUrl+'/lottoResult/create',
+      {memNo:memNo,num1:num1,num2:num2,num3:num3,num4:num4,num5:num5,num6:num6}
+      )
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(msg){
+        deferred.reject(msg);
+      })
+    return deferred.promise;
+  }
 
+   this.read = function(memNo){
+   var deferred = $q.defer();
+   $http.post(
+   rootUrl+'/lottoResult/read',
+   {memNo:memNo}
+   )
+   .success(function(data){
+   deferred.resolve(data);
+   })
+   .error(function(msg){
+   deferred.reject(msg);
+   })
+   return deferred.promise;
+   }
+  /*
+   this.update = function(memNo,title,content){
+   var deferred = $q.defer();
+   $http.post(
+   rootUrl+'/board/create',
+   {memNo:memNo,title:title,content:content}
+   )
+   .success(function(data){
+   deferred.resolve(data);
+   })
+   .error(function(msg){
+   deferred.reject(msg);
+   })
+   return deferred.promise;
+   }
+
+   this.delete = function(memNo,title,content){
+   var deferred = $q.defer();
+   $http.post(
+   rootUrl+'/board/create',
+   {memNo:memNo,title:title,content:content}
+   )
+   .success(function(data){
+   deferred.resolve(data);
+   })
+   .error(function(msg){
+   deferred.reject(msg);
+   })
+   return deferred.promise;
+   }
+   */
 
 
 }])

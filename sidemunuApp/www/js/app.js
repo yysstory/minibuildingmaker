@@ -74,6 +74,7 @@ var app = angular.module('starter', ['ionic'])
   })
 
   .state('app.check', {
+    cache: false,
       url: '/check',
       views: {
         'menuContent': {

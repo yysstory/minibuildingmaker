@@ -1,6 +1,6 @@
 /*angular.module('starter.controllers', [])*/
 
-app.controller('LottoCtrl', function($ionicHistory,$scope,$ionicPopup,$interval, $ionicModal, $timeout, $state, $ionicPopup, $http) {
+app.controller('LottoCtrl', function(LottoResult,$ionicHistory,$scope,$ionicPopup,$interval, $ionicModal, $timeout, $state, $ionicPopup, $http) {
     console.log('로또컨트롤');
     console.log($scope.userInfo);
   $ionicHistory.nextViewOptions({
@@ -92,17 +92,33 @@ app.controller('LottoCtrl', function($ionicHistory,$scope,$ionicPopup,$interval,
         '저장된 번호로 추첨일에 결과를 알려드립니다.',
       buttons: [{
         text: '취소',
-        type: 'button-default'
+        type: 'button-default',
+        onTap: function(e) {
+          return false;
+        }
       }, {
         text: '저장',
-        type: 'button-positive'
+        type: 'button-positive',
+        onTap: function(e) {
+          return true;
+        }
       }]
     });
     confirmPopup.then(function(res) {
+      if($scope.userInfo==null){
+        $state.go('app.login');
+        return;
+      }
+      var memNo=$scope.userInfo.MEM_NO;
+      console.log(res)
       if(res) {
-        console.log('취소');
-      } else {
         console.log(inputNumbers+'저장');
+        LottoResult.create(memNo,inputNumbers[0],inputNumbers[1],inputNumbers[2],inputNumbers[3],inputNumbers[4],inputNumbers[5])
+          .then(function(){
+
+        })
+      } else {
+        console.log('취소');
       }
     });
   };
@@ -190,8 +206,16 @@ app.controller('LottoCtrl', function($ionicHistory,$scope,$ionicPopup,$interval,
 
 /*  $window.localStorage.clear();*/
 })
-.controller('CheckCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
+.controller('CheckCtrl', function(LottoResult,$scope, $ionicModal, $timeout, $state, $ionicPopup, $http) {
   console.log('CheckCtrl');
+  $scope.lottoResultRead = function(){
+    var memNo = $scope.userInfo.MEM_NO;
+    LottoResult.read(memNo).then(function(data){
+      $scope.list = data;
+    })
+  }
+  $scope.lottoResultRead();
+
 
 })
 .controller('BoardCtrl', function($scope, $ionicModal, $timeout,$state, $ionicPopup, $http) {

@@ -9,6 +9,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
 var board = require('./routes/board');
+var lottoResult = require('./routes/lottoResult');
+
 
 var db = require('./db/basic');
 var cors = require('cors')
@@ -34,6 +36,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/board', board);
+app.use('/lottoResult', lottoResult);
 
 
 // catch 404 and forward to error handler

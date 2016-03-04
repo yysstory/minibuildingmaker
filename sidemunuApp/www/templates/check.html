@@ -1,43 +1,15 @@
 <ion-view view-title="">
   <ion-content>
 
-
-    <div class="card">
+    <div class="card" ng-repeat="row in list">
       <div class="item item-divider">
-        2016/02/01 12:22:00
+        {{row.REG_DATE}}
       </div>
       <div class="item item-text-wrap">
-        20 23 13 24 12 32
+        {{row.NUM1}}{{row.NUM2}}{{row.NUM3}}{{row.NUM4}}{{row.NUM5}}{{row.NUM6}}
       </div>
       <div class="item item-divider">
-        5월 7일 추첨 예정입니다.
-
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="item item-divider">
-        2016/01/23 12:22:00
-      </div>
-      <div class="item item-text-wrap">
-        1 23 13 24 12 33
-      </div>
-      <div class="item item-divider">
-        다음주에는 꼬마빌딩이!
-
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="item item-divider">
-        2016/01/11 12:22:00
-      </div>
-      <div class="item item-text-wrap">
-        1 23 13 24 12 33
-      </div>
-      <div class="item item-divider">
-        3등담첨 축하합니다!!!
-
+        당첨등수 : {{row.RANKING}}
       </div>
     </div>
 
