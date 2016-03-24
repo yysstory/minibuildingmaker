@@ -225,8 +225,12 @@ app.controller('LottoCtrl', function(LottoResult,$ionicHistory,$scope,$ionicPopu
   console.log('ideadCtrl');
 })
 
-.controller('AppCtrl', function($ionicHistory,Auth,$window,$scope, $ionicModal, $timeout,  $state,$location, $ionicPopup, $http) {
+.controller('AppCtrl', function($ionicHistory,Auth,$window,$scope,$rootScope, $ionicModal, $timeout,  $state,$location, $ionicPopup, $http) {
   $scope.loginInfo = {};
+
+    if(window.localStorage['userInfo']!=null){
+      $rootScope.userInfo = JSON.parse(window.localStorage['userInfo']);
+    }
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
