@@ -136,6 +136,23 @@ app.controller('LottoCtrl', function(LottoResult,$ionicHistory,$scope,$ionicPopu
      Auth.logout();
    }
 
+  // Create the login modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/withdrawalModal.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  // Triggered in the login modal to close it
+  $scope.closeWithdrawalModal = function() {
+    $scope.modal.hide();
+  };
+
+  // Open the login modal
+  $scope.openWithdrawalModal = function() {
+    $scope.modal.show();
+  };
+
    $scope.doWithdrawal= function(){
      var email = $scope.loginInfo.email;
      var password = $scope.loginInfo.password;
